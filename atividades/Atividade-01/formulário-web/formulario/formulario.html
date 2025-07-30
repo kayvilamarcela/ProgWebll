@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    .form-box {
+      border: 2px solid black;
+      width: 400px;
+      padding: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+    input[type="text"] {
+      width: calc(100% - 10px);
+      padding: 5px;
+    }
+    .cep-group {
+      display: flex;
+      gap: 5px;
+    }
+    .cep-group input[type="text"] {
+      flex: 1;
+    }
+    .cep-group button {
+      width: 30px;
+    }
+    #ok {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-box">
+    <h3>Formulário</h3>
+    <form id="formulario">
+
+      <label for="matricula">Matrícula:</label>
+      <input type="text" id="matricula" name="matricula">
+
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome">
+
+      <label for="cep">CEP:</label>
+      <div class="cep-group">
+        <input type="text" id="cep" name="cep" maxlength="9">
+        <button type="button" onclick="buscarCEP()">P</button>
+      </div>
+
+      <label for="endereco">Endereço:</label>
+      <input type="text" id="endereco" name="endereco">
+
+      <button type="button" id="ok" onclick="validarFormulario()">OK</button>
+
+    </form>
+  </div>
+
+  <script>
+    function buscarCEP() {
+      const cep = document.getElementById("cep").value.replace(/\D/g, "");
+
+      if (cep.length !== 8) {
+        alert("Digite um CEP válido com 8 dígitos.");
+        return;
+      }
+
+      fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.erro) {
+            alert("CEP não encontrado.");
+            return;
+          }
+
+          document.getElementById("endereco").value =
+            `${data.logradouro}, ${data.bairro}, ${data.localidade} - ${data.uf}`;
+        })
+        .catch(() => {
+          alert("Erro ao buscar o CEP.");
+        });
+    }
+
+    function validarFormulario() {
+      const campos = ["matricula", "nome", "cep", "endereco"];
+      for (let campo of campos) {
+        const valor = document.getElementById(campo).value.trim();
+        if (valor.length < 3) {
+          alert(`O campo "${campo}" deve ter pelo menos 3 caracteres.`);
+          document.getElementById(campo).focus();
+          return;
+        }
+      }
+
+      alert("Formulário enviado com sucesso!");
+    }
+  </script>
+
+</body>
+</html>

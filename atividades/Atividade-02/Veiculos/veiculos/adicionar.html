@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Adicionar Veículo</title>
+</head>
+<body>
+  <h2>Adicionar Veículo</h2>
+  <form id="formVeiculo">
+    <label>Marca: <input type="text" name="marca" required></label><br><br>
+    <label>Modelo: <input type="text" name="modelo" required></label><br><br>
+    <label>Ano de Fabricação: <input type="text" name="ano_fabric" required></label><br><br>
+    <label>Cor: <input type="text" name="cor" required></label><br><br>
+    <label>Placa: <input type="text" name="placa" required></label><br><br>
+    <button type="submit">Salvar</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("formVeiculo");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault(); // Evita recarregar a página
+
+      const dados = new FormData(form);
+
+      const response = await fetch("https://mauricio.inf.br/p6/api/add/", {
+        method: "POST",
+        body: dados,
+      });
+
+      const resultado = await response.text();
+
+      alert("Veículo adicionado com sucesso!");
+      form.reset(); // Limpa os campos
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Firebase Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+    }
+    input {
+      margin-bottom: 10px;
+      display: block;
+    }
+    button {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Login Firebase</h2>
+
+  <label for="email">E-mail:</label>
+  <input type="email" id="email" required>
+
+  <label for="senha">Senha:</label>
+  <input type="password" id="senha" required>
+
+  <button onclick="cadastrar()">Cadastrar</button>
+  <button onclick="login()">Entrar</button>
+
+  <!-- Script modern Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDPYsqGFChcQX3M1cgUDU7Jxzr2KiCXljA",
+      authDomain: "teste-3b53x.firebaseapp.com",
+      projectId: "teste-3b53x",
+      storageBucket: "teste-3b53x.firebasestorage.app",
+      messagingSenderId: "79043387609",
+      appId: "1:79043387609:web:6a93d4e598b7878f6fe5f1",
+      measurementId: "G-M48936JHQZ"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    window.cadastrar = function () {
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+
+      createUserWithEmailAndPassword(auth, email, senha)
+        .then(userCredential => {
+          alert("Cadastrado com sucesso");
+          console.log("Usuário:", userCredential.user);
+        })
+        .catch(error => {
+          alert("Erro ao cadastrar: " + error.message);
+          console.error(error);
+        });
+    };
+
+    window.login = function () {
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+
+      signInWithEmailAndPassword(auth, email, senha)
+        .then((userCredential) => {
+          alert("Logado com sucesso!");
+          console.log("Usuário:", userCredential.user);
+        })
+        .catch((error) => {
+          alert("Erro ao logar: " + error.message);
+        });
+    };
+  </script>
+
+</body>
+</html>

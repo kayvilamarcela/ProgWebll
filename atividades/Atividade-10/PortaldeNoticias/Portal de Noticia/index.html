@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Notícias - Fortaleza</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">News Fortaleza</div>
+    <nav class="nav">
+      <ul class="menu">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Últimas</a></li>
+        <li><a href="#">Quem Somos</a></li>
+        <li><a href="#">Fale Conosco</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+    </nav>
+  </header>
+
+  <section class="destaque">
+    <img src="passagens-aereas-fortaleza-capa2019-01-820x430.jpg" alt="Imagem destaque de Fortaleza" style="width:100%;">
+    <h1>Bem-vindo ao Mari News Fortaleza – as principais notícias da capital cearense!</h1>
+  </section>
+
+  <main class="container">
+    <section class="noticias">
+      <div class="card">
+        <img src="Carnaval-em-Fortaleza.jpg" alt="Carnaval Fortaleza" style="width:100%;">
+        <h2>Carnaval de Fortaleza atrai milhares em 2025</h2>
+        <p>Com blocos animando diversos bairros, a folia se consolidou como uma das maiores do Nordeste.</p>
+      </div>
+      <div class="card">
+        <img src="whatsapp-image-2024-08-06-at-14-50-21.webp" alt="Transporte público em Fortaleza" style="width:100%;">
+        <h2>Novas linhas de ônibus integradas são lançadas</h2>
+        <p>Prefeitura de Fortaleza amplia mobilidade urbana com mais 8 linhas de ônibus interligadas ao VLT.</p>
+      </div>
+      <div class="card">
+        <img src="Estatua.jpeg" alt="Pôr do sol na Praia de Iracema" style="width:100%;">
+        <h2>Projeto revitaliza Praia de Iracema</h2>
+        <p>A orla está passando por melhorias que incluem nova iluminação, segurança e espaços culturais.</p>
+      </div>
+      <div class="card">
+        <img src="S-o-Jo-o-de-Fortaleza-2025.jpg" alt="Evento cultural em Fortaleza" style="width:100%;">
+        <h2>Eventos culturais movimentam a cidade</h2>
+        <p>Fortaleza recebe mostra de cinema nordestino e festival de literatura no Dragão do Mar.</p>
+      </div>
+    </section>
+
+    <aside class="sidebar">
+      <h3>Temas em Alta</h3>
+      <ul class="list">
+        <li>Turismo em Fortaleza</li>
+        <li>Eventos Locais</li>
+        <li>Transporte Público</li>
+        <li>Cultura Nordestina</li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    <p>Email para contato: contato@marinewsfortaleza.com</p>
+    <div class="social">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.querySelector('.menu');
+    hamburger.onclick = () => {
+      menu.classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
